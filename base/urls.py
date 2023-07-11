@@ -20,5 +20,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # import include to let Django know where to look for urls
     path('', include('todo.urls')),
 ]
