@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Task-Ninja</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        body {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1003%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(36%2c 38%2c 45%2c 1)'%3e%3c/rect%3e%3cpath d='M437.69 595.14C565.91 557.62 522.92 195.78 792.17 195.24 1061.42 194.7 1314.85 422 1501.13 424.84' stroke='rgba(129%2c 145%2c 161%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M755.73 623.47C890.06 548.18 816.61 99.36 1068.57 92.85 1320.53 86.34 1532.66 253.93 1694.26 255.25' stroke='rgba(129%2c 145%2c 161%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M204.81 596.61C389.9 586.96 514.28 265.6 864.63 258.55 1214.98 251.5 1356.11 124.83 1524.45 124.15' stroke='rgba(129%2c 145%2c 161%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M346.16 577.83C469.18 564.06 541.72 294.87 751.25 293.06 960.78 291.25 953.79 363.06 1156.34 363.06 1358.88 363.06 1458.66 293.32 1561.43 293.06' stroke='rgba(129%2c 145%2c 161%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M506.91 660.05C592.71 656.63 563.28 525.16 818.76 516.13 1074.23 507.1 1272.76 252.97 1442.45 247.33' stroke='rgba(129%2c 145%2c 161%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1003'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+	background-size: cover;
+    font-family: 'Kanit', sans-serif;
+    padding-top: 200px;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        font-family: 'Kanit', sans-serif;
+    }
+
+    a,p {
+        color: #000000
+    }
+
+    a {
+        font-weight: 600;
+    }
+    .login-logout {
+        position: absolute;
+        top: 5.5cm;
+        right: 16.2cm;
+        
+    }
+
+    .container {
+        max-width: 500px;
+        margin: auto;
+        background-image: linear-gradient(to right, #051937, #2b3456, #4e5376, #727399, #9895bc);
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    input {
+        outline: none;
+        border: none;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    .header-bar {
+        display: flex;
+        justify-content: space-between;
+        color: #fffdfd;
+        padding: 10px;
+        border-radius: 5px 5px 5px 5px;
+        background-image: linear-gradient(to right, #051937, #2b3456, #4e5376, #727399, #9895bc);
+    }
+
+    .header-bar a {
+        color: rgb(250, 250, 250);
+        text-decoration: none;
+        
+    }
+
+    .task-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-image: linear-gradient(to right, #051937, #2b3456, #4e5376, #727399, #9895bc);
+        border-bottom: 5px  #bbc7d6;
+        overflow: hidden;
+    }
+
+    .task-title {
+        display: flex;
+        padding: 25px;
+    }
+
+    .task-title a {
+        text-decoration: none;
+        color: #ffffff;
+        margin-left: 10px;
+    }
+
+    .task-complete-icon {
+        height: 20px;
+        width: 20px;
+        background-color: rgb(38, 186, 38);
+        border-radius: 50%;
+    }
+
+    .task-incomplete-icon {
+        height: 20px;
+        width: 20px;
+        background-color: rgb(250, 57, 57);
+        border-radius: 50%;
+    }
+
+    .delete-link {
+        text-decoration: none;
+        font-weight: 900;
+        color: #cf4949;
+        font-size: 22px;
+        line-height: 0;
+        padding: 20px 0px;
+    }
+
+    /*Handle Classes*/
+
+    .handle {
+        display: inline-block;
+        padding: 20px 16px;
+        cursor: grab;
+        user-select: none;
+    }
+
+    .handle:after,
+    .handle:before {
+        display: block;
+        content: "";
+    }
+
+    .handle:active,
+    .handle:active:before,
+    .handle:active:after {
+        cursor: grabbing;
+    }
+
+    .dropArea {
+        background-color: #f1f2f6;
+        color: black;
+        border: #ced6e0 1px solid;
+    }
+
+    .selectedTask {
+        opacity: 0.6;
+    }
+
+
+    #add-link {
+        color: #06b900;
+        text-decoration: none;
+        font-size: 42px;
+        text-shadow: 1px 1px #7a0a00;
+    }
+
+    #search-add-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+    }
+
+    @media screen and (max-width:320px) {
+        #search-add-wrapper {
+            padding: 10px;
+        }
+    }
+
+    input[type=text],
+    input[type=password],
+    textarea {
+        border: 1px solid #757575;
+        border-radius: 5px;
+        padding: 10px;
+        width: 90%;
+    }
+
+    label {
+        padding-top: 10px !important;
+        display: block;
+    }
+
+    ::placeholder {
+        font-weight: 300;
+        opacity: 0.5;
+    }
+
+    .button {
+        border: 1px solid #91bc84;
+        background-color: #14af00;
+        color: #ffffff;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+
+
+        {% endblock content %}
+    </div>
+</body>
+</html>
